@@ -1,0 +1,189 @@
+name: choco_tur_app_business
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.5 <4.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  animated_text_kit: ^4.2.2
+  animations: ^2.0.8
+  country_picker: ^2.0.24
+  country_icons: ^3.0.0
+  dob_input_field: ^2.0.0
+  duration: ^3.0.13
+  dynamic_color: ^1.4.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.5
+  http: ^1.2.0
+  in_app_review: ^2.0.10
+  loading_animation_widget: ^1.2.0+4
+  logger: ^2.0.2+1
+  provider: ^6.1.1
+  shared_preferences: ^2.2.2
+  spring: ^2.0.2
+  tutorial_coach_mark: ^1.2.12
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^2.0.0
+  dart_define: ^1.0.4
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # For localization.
+  generate: true
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/login.png
+    - assets/logo.png
+    - assets/logo_android.png
+    - assets/logo_ios.png
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_native_splash:
+  color: "#9C4544"
+  #background_image: "assets/background.png"
+  image: assets/splash.png
+
+  # The branding property allows you to specify an image used as branding in the splash screen.
+  # It must be a png file. It is supported for Android, iOS and the Web.  For Android 12,
+  # see the Android 12 section below.
+  #branding: assets/dart.png
+
+  # To position the branding image at the bottom of the screen you can use bottom, bottomRight,
+  # and bottomLeft. The default values is bottom if not specified or specified something else.
+  #branding_mode: bottom
+
+  # The color_dark, background_image_dark, image_dark, branding_dark are parameters that set the background
+  # and image when the device is in dark mode. If they are not specified, the app will use the
+  # parameters from above. If the image_dark parameter is specified, color_dark or
+  # background_image_dark must be specified.  color_dark and background_image_dark cannot both be
+  # set.
+  #color_dark: "#042a49"
+  #background_image_dark: "assets/dark-background.png"
+  #image_dark: assets/splash-invert.png
+  #branding_dark: assets/dart_dark.png
+
+  fullscreen: true
+
+flutter_launcher_icons:
+  android: true # can specify file name here e.g. "ic_launcher"
+  ios: true
+  image_path_android: "assets/logo_android.png"
+  image_path_ios: "assets/logo_ios.png"
+  remove_alpha_ios: true
+  adaptive_icon_background: "#9C4544"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+
+dart_define:
+
+    # OPTIONAL: Whether to generate the dart boilerplate or not. 
+    # Defaults to true
+    dart: true 
+
+    # OPTIONAL: Whether to generate the json boilerplate or not. 
+    # Defaults to true
+    json: true 
+
+    # OPTIONAL: The path to the json file to generate. 
+    # Defaults to dart_define.json
+    json_path: dart_define.json 
+       
+    # OPTIONAL: The path to the dart file to generate. 
+    # Defaults to lib/dart_define.gen.dart
+    dart_path: lib/dart_define.gen.dart 
+       
+    # OPTIONAL: The name of the generated class. 
+    # Defaults to dart_define
+    class_name: dart_define 
+
+    # REQUIRED: The variables to add to the generated config files
+    variables: 
+        - name: WEBAPP_URL
+          description: The Spring Boot Web Application URL
+          default: choco-tur-webapp-823850501986.europe-west1.run.app
+          required: true
+        - name: SSL_ENABLED
+          description: Whether SSL is enabled for communicating with webapp
+          default: true
+          required: false
+
+    flavors:
+        - name: production 
+          description: The production flavor
+        - name: development
+          description: The development flavor
