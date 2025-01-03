@@ -56,6 +56,7 @@
 	"skipButton": "SALTA",
 	"shortPassword": "La password deve contenere almeno 8 caratteri",
 	"signInButtonLabel": "ACCEDI",
+	"validationButton": "Convalide",
 	"yesButton": "SÌ",
 	"you": "Tu"
 }

@@ -19,7 +19,7 @@ class PasswordRecoveryProcessPage extends StatefulWidget {
 }
 
 class _PasswordRecoveryProcessPageState extends State<PasswordRecoveryProcessPage> {
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _controller = TextEditingController();
 
   int _currentPageIndex = 0;
@@ -106,6 +106,7 @@ class _PasswordRecoveryProcessPageState extends State<PasswordRecoveryProcessPag
 
   @override
   Widget build(BuildContext context) {
+    _formKey = GlobalKey<FormState>();
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: PageTransitionSwitcher(

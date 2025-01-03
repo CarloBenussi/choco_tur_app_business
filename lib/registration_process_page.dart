@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:animations/animations.dart';
+import 'package:choco_tur_app_business/models/choco_tur_business.dart';
 import 'package:choco_tur_app_business/services/webapp_service.dart';
 import 'package:choco_tur_app_business/utils/logger.dart';
 import 'package:choco_tur_app_business/utils/route_names.dart';
@@ -10,10 +11,9 @@ import 'package:choco_tur_app_business/utils/validation.dart';
 import 'package:choco_tur_app_business/widgets/home_page_background_painter.dart';
 import 'package:choco_tur_app_business/widgets/loading_animation.dart';
 import 'package:choco_tur_app_business/widgets/user_text_input.dart';
-import 'package:country_picker/country_picker.dart';
-import 'package:dob_input_field/dob_input_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class RegistrationProcessPage extends StatefulWidget {
@@ -24,7 +24,7 @@ class RegistrationProcessPage extends StatefulWidget {
 }
 
 class _RegistrationProcessPageState extends State<RegistrationProcessPage> {
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _controller = TextEditingController();
 
   int _currentPageIndex = 0;
@@ -65,11 +65,14 @@ class _RegistrationProcessPageState extends State<RegistrationProcessPage> {
     setState(() {
       _registering = true;
     });
+    String? deviceRegistrationToken = Provider.of<ChocoTurBusiness>(context, listen: false).deviceRegistrationToken;
     String? responseBody = await WebappService.registerBusiness(
       context,
       _collectedEmail,
       _collectedPassword,
       _collectedMatchingPassword,
+      _collectedInvitationToken,
+      deviceRegistrationToken!,
     );
     setState(() {
       _registering = false;
@@ -126,7 +129,6 @@ class _RegistrationProcessPageState extends State<RegistrationProcessPage> {
       _collectedPassword = _controller.text;
     } else if (_currentPageIndex == 3) {
       _collectedMatchingPassword = _controller.text;
-    } else if (_currentPageIndex == 4) {
       String? responseBody = await _register(context);
       if (responseBody == null) {
         return;
@@ -154,12 +156,6 @@ class _RegistrationProcessPageState extends State<RegistrationProcessPage> {
     });
   }
 
-  void _onSkipPressed(BuildContext context) {
-    _currentPageIndex++;
-    _backPressed = false;
-    setState(() {});
-  }
-
   @override
   void initState() {
     super.initState();
@@ -167,6 +163,7 @@ class _RegistrationProcessPageState extends State<RegistrationProcessPage> {
 
   @override
   Widget build(BuildContext context) {
+    _formKey = GlobalKey<FormState>();
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: PageTransitionSwitcher(
@@ -226,6 +223,11 @@ class _RegistrationProcessPageState extends State<RegistrationProcessPage> {
                               obscured: true,
                             );
                           } else {
+                            Timer(const Duration(seconds: 60), () {
+                              setState(() {
+                                _resendCodeAvailable = true;
+                              });
+                            });
                             return Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -273,18 +275,6 @@ class _RegistrationProcessPageState extends State<RegistrationProcessPage> {
                             ),
                           ),
                         ),
-                        if (_currentPageIndex == 3)
-                          TextButton(
-                            onPressed: () => _onSkipPressed(context),
-                            child: Text(
-                              AppLocalizations.of(context)!.skipButton,
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                                color: (_currentPageIndex > 0) ? Styles.redShade : null,
-                              ),
-                            ),
-                          ),
                         if (_currentPageIndex < 5)
                           TextButton(
                             onPressed: () => _onNextPressed(context),

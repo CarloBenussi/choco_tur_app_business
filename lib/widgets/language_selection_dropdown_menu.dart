@@ -1,6 +1,5 @@
 import 'package:choco_tur_app_business/models/choco_tur_business.dart';
 import 'package:choco_tur_app_business/utils/lang_codes.dart';
-import 'package:choco_tur_app_business/utils/lang_codes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

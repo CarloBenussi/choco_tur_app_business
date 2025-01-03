@@ -29,10 +29,13 @@ class ChocoTurBusiness extends ChangeNotifier {
       }
     }
 
+    String? deviceRegistrationToken = _prefs.getString(_deviceRegistrationTokenKey);
+
     return ChocoTurBusiness(
       loginEmail: loginEmail,
       loginAccessToken: loginAccessToken,
       loginRefreshToken: loginRefreshToken,
+      deviceRegistrationToken: deviceRegistrationToken,
       loggedIn: loggedIn,
       language: _prefs.getString(_languageKey),
     );
@@ -42,6 +45,7 @@ class ChocoTurBusiness extends ChangeNotifier {
     this.loginEmail,
     this.loginAccessToken,
     this.loginRefreshToken,
+    this.deviceRegistrationToken,
     required this.loggedIn,
     this.language,
   });
@@ -50,12 +54,14 @@ class ChocoTurBusiness extends ChangeNotifier {
   static const String _loginEmailKey = "email";
   static const String _loginAccessTokenKey = "loginAccessToken";
   static const String _loginRefreshTokenKey = "loginRefreshToken";
+  static const String _deviceRegistrationTokenKey = "deviceRegistrationToken";
   static const String _languageKey = "lang";
 
   // User preferences to store.
   String? loginEmail;
   String? loginAccessToken;
   String? loginRefreshToken;
+  String? deviceRegistrationToken;
   bool loggedIn;
   String? language;
   static late final SharedPreferences _prefs;
@@ -84,6 +90,7 @@ class ChocoTurBusiness extends ChangeNotifier {
 
   void saveLoginInfo(
     String email,
+    String registrationToken,
     String? accessToken,
     String? refreshToken,
     bool rememberUser,
@@ -91,6 +98,7 @@ class ChocoTurBusiness extends ChangeNotifier {
     loginEmail = email;
     loginAccessToken = accessToken;
     loginRefreshToken = refreshToken;
+    deviceRegistrationToken = registrationToken;
     loggedIn = true;
 
     if (rememberUser) {
@@ -102,6 +110,9 @@ class ChocoTurBusiness extends ChangeNotifier {
         _prefs.setString(_loginRefreshTokenKey, refreshToken);
       }
     }
+
+    // Always save the device registration token.
+    _prefs.setString(_deviceRegistrationTokenKey, deviceRegistrationToken!);
 
     notifyListeners();
   }

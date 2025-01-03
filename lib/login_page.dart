@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                 ListView(
                   children: [
                     Center(
-                      child: Text("CHOCO TUR",
+                      child: Text("CHOCO TUR BUSINESS",
                           style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.w600,
@@ -176,11 +176,13 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
                     ),
-                    Row(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           AppLocalizations.of(context)!.dontHaveAnAccountQ,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 15,
                           ),
@@ -192,6 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                             onPressed: () => {Navigator.pushNamed(context, RouteNames.registrationProcess)},
                             child: Text(
                               AppLocalizations.of(context)!.createAnAccount,
+                              textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 15, color: Styles.redShade),
                             ))
                       ],

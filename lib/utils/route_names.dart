@@ -6,4 +6,5 @@ class RouteNames {
   static const String account = "/account";
   static const String registrationProcess = "/registration";
   static const String passwordRecoveryProcess = "/password_recovery";
+  static const String validation = "/validation";
 }

@@ -39,6 +39,9 @@ dependencies:
   dob_input_field: ^2.0.0
   duration: ^3.0.13
   dynamic_color: ^1.4.0
+  firebase_app_check: ^0.2.1+13
+  firebase_core: ^2.25.4
+  firebase_messaging: ^14.7.19
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.3.5
   http: ^1.2.0
@@ -181,6 +184,22 @@ dart_define:
           description: Whether SSL is enabled for communicating with webapp
           default: true
           required: false
+        - name: FIREBASE_APP_ID
+          description: The Firebase app ID
+          default: "Default App ID"
+          required: true
+        - name: FIREBASE_API_KEY
+          description: The Firebase API KEY
+          default: "Default API KEY"
+          required: true
+        - name: FIREBASE_PROJECT_ID
+          description: The Firebase project ID
+          default: "Default Project ID"
+          required: true
+        - name: FIREBASE_BUCKET
+          description: The Firebase archive bucket
+          default: gs://chocotur.appspot.com
+          required: true
 
     flavors:
         - name: production 

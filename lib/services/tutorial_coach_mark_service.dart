@@ -7,6 +7,9 @@ import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TutorialCoachMarkService {
+  static const String NAVIGATOR_HOME_BUTTON_KEY = "navigatorHomeButtonKey";
+  static const String NAVIGATOR_VALIDATION_BUTTON_KEY = "navigatorValidationButtonKey";
+
   static Map<String, GlobalKey> globalKeysMap = <String, GlobalKey>{};
 
   static TutorialCoachMark? _tutorial;
@@ -85,6 +88,10 @@ class TutorialCoachMarkService {
   static void show(BuildContext context) {
     if (_tutorial == null) {
       List<TargetFocus> targets = [];
+      targets.add(_createTarget(
+          NAVIGATOR_HOME_BUTTON_KEY, "Tasto 'Home'", "Permette di visualizzare dati sul business", ContentAlign.right));
+      targets.add(_createTarget(NAVIGATOR_VALIDATION_BUTTON_KEY, "Tasto 'Convalide'",
+          "Permette di validare sconti e degustazioni degli utenti", ContentAlign.left));
 
       _tutorial = TutorialCoachMark(
           targets: targets, // List<TargetFocus>

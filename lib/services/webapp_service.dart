@@ -29,15 +29,6 @@ class WebappService {
   static const String resetPasswordTestEndpoint = "/business/resetPasswordTest";
   static const String changePasswordEndpoint = "/business/changePassword";
 
-  static const String userToursEndpoint = "/tours/user/tours";
-  static const String activateUserTourEndpoint = "/tours/user/activateTour";
-  static const String deactivateUserTourEndpoint = "/tours/user/deactivateTour";
-  static const String advanceUserTourEndpoint = "/tours/user/advanceTour";
-  static const String revertUserTourEndpoint = "/tours/user/revertTour";
-  static const String toursEndpoint = "/tours/tours";
-  static const String tourStopsEndpoint = "/tours/tourStops";
-  static const String tourStopStoriesEndpoint = "/tours/tourStopStories";
-
   static List<int> tokenExpiredStatusCodes = [401, 403];
 
   static HttpClient? _client;
@@ -79,6 +70,8 @@ class WebappService {
     String email,
     String password,
     String matchingPassword,
+    String invitationToken,
+    String deviceRegistrationToken,
   ) async {
     Uri uri = _buildUri(registrationEndpoint);
     HttpClientRequest request = await _client!.postUrl(uri);
@@ -87,6 +80,8 @@ class WebappService {
       'email': email,
       'password': password,
       'matchingPassword': matchingPassword,
+      'invitationToken': invitationToken,
+      'deviceRegistrationToken': deviceRegistrationToken
     });
     request.add(utf8.encode(body));
     HttpClientResponse response = await request.close();
@@ -134,6 +129,7 @@ class WebappService {
     Map<String, dynamic> body = jsonDecode(await response.transform(utf8.decoder).join());
     Provider.of<ChocoTurBusiness>(context, listen: false).saveLoginInfo(
       email,
+      body["deviceRegistrationToken"],
       body["accessToken"],
       body["refreshToken"],
       true,
@@ -199,6 +195,7 @@ class WebappService {
     Map<String, dynamic> returnBody = jsonDecode(await response.transform(utf8.decoder).join());
     Provider.of<ChocoTurBusiness>(context, listen: false).saveLoginInfo(
       email,
+      returnBody["deviceRegistrationToken"],
       returnBody["accessToken"],
       returnBody["refreshToken"],
       rememberBusiness,
